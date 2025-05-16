@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CsapoKristof_LegyenOnIsMilliomos
 {
-    internal class kerdes
+    public class Kerdes
     {
         public string Szoveg { get; set; }
         public List<string> Valaszok { get; set; }

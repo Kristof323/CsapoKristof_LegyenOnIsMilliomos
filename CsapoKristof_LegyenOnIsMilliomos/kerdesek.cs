@@ -6,41 +6,50 @@ using System.Threading.Tasks;
 
 namespace CsapoKristof_LegyenOnIsMilliomos
 {
-    namespace CsapoKristof_LegyenOnIsMilliomos
+    public class Kerdesek
     {
-        public class Kerdesek
+        public List<Kerdes> OsszesKerdes { get; private set; }
+        private Random rnd;
+
+        public Kerdesek()
         {
-            public List<Kerdes> OsszesKerdes { get; private set; }
+            OsszesKerdes = new List<Kerdes>();
+            rnd = new Random();
+        }
 
-            public Kerdesek()
+        public void BetoltKerdesekFajlbol(string fajlNev)
+        {
+            if (!File.Exists(fajlNev))
             {
-                OsszesKerdes = new List<Kerdes>();
+                Console.WriteLine($"A fájl nem található: {fajlNev}");
+                return;
             }
 
-            public void BetoltKerdesekFajlbol(string fajlNev)
+            var sorok = File.ReadAllLines(fajlNev);
+            foreach (var sor in sorok)
             {
-                if (!File.Exists(fajlNev))
-                {
-                    Console.WriteLine($"A fájl nem található: {fajlNev}");
-                    return;
-                }
+                var mezok = sor.Split(';');
+                if (mezok.Length < 8)
+                    continue;
 
-                var sorok = File.ReadAllLines(fajlNev);
-                foreach (var sor in sorok)
-                {1
-                    var mezok = sor.Split(';');
-                    if (mezok.Length < 7)
-                        continue;
+                string kerdesSzoveg = mezok[1];
+                var valaszok = new List<string> { mezok[2], mezok[3], mezok[4], mezok[5] };
+                char helyesValasz = mezok[6].ToUpper()[0];
+                string kategoria = mezok[7];
 
-                    string kerdesSzoveg = mezok[1];
-                    var valaszok = new List<string> { mezok[2], mezok[3], mezok[4], mezok[5] };
-                    char helyesValasz = mezok[6].ToUpper()[0];
-                    string kategoria = mezok[7];
-
-                    var ujKerdes = new Kerdes(kerdesSzoveg, valaszok, helyesValasz, kategoria);
-                    OsszesKerdes.Add(ujKerdes);
-                }
+                var ujKerdes = new Kerdes(kerdesSzoveg, valaszok, helyesValasz, kategoria);
+                OsszesKerdes.Add(ujKerdes);
             }
+        }
+
+        public Kerdes GetRandomKerdes(string kategoria)
+        {
+            var kategoriaKerdesek = OsszesKerdes.FindAll(k => k.Kategoria.Equals(kategoria, StringComparison.OrdinalIgnoreCase));
+            if (kategoriaKerdesek.Count == 0)
+                return null;
+
+            int index = rnd.Next(kategoriaKerdesek.Count);
+            return kategoriaKerdesek[index];
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using CsapoKristof_LegyenOnIsMilliomos.CsapoKristof_LegyenOnIsMilliomos;
+﻿using CsapoKristof_LegyenOnIsMilliomos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,9 @@ namespace CsapoKristof_LegyenOnIsMilliomos
         static void Main(string[] args)
         {
             var kerdesek = new Kerdesek();
-            kerdesek.BetoltKerdesekFajlbol("kerdes.txt");
+            string fajlPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "kerdes.txt");
+            kerdesek.BetoltKerdesekFajlbol(fajlPath);
+
 
             var randomKerdes = kerdesek.GetRandomKerdes("BIOLÓGIA");
             if (randomKerdes != null)

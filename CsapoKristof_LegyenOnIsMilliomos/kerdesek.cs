@@ -27,10 +27,10 @@ namespace CsapoKristof_LegyenOnIsMilliomos
 
                 var sorok = File.ReadAllLines(fajlNev);
                 foreach (var sor in sorok)
-                {
+                {1
                     var mezok = sor.Split(';');
                     if (mezok.Length < 7)
-                        continue; // hibás sor kihagyása
+                        continue;
 
                     string kerdesSzoveg = mezok[1];
                     var valaszok = new List<string> { mezok[2], mezok[3], mezok[4], mezok[5] };

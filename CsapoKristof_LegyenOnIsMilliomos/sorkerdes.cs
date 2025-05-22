@@ -9,7 +9,7 @@ namespace CsapoKristof_LegyenOnIsMilliomos
     public class Sorkerdes
     {
         public string Szoveg { get; set; }
-        public List<string> Elemei { get; set; }
+        public List<string> Elemei {   get; set; }
         public string HelyesSorrend { get; set; }
         public string Kategoria { get; set; }
 

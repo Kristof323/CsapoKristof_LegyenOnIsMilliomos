@@ -10,7 +10,6 @@ namespace CsapoKristof_LegyenOnIsMilliomos
     {
         static void Main(string[] args)
         {
-            // Kérdésfájlok betöltése
             var kerdesek = new Kerdesek();
             string kerdesFajlPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "kerdes.txt");
             kerdesek.BetoltKerdesekFajlbol(kerdesFajlPath);
@@ -19,7 +18,6 @@ namespace CsapoKristof_LegyenOnIsMilliomos
             string sorkerdesFajlPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "sorkerdes.txt");
             sorkerdesek.BetoltFajlbol(sorkerdesFajlPath);
 
-            // Sorkérdéssel kezdés
             Console.WriteLine("Üdvözlünk a Legyen Ön is Milliomos játékban!");
             Console.WriteLine("Kezdésként válaszolj egy sorkérdésre, hogy elindulhass a fődíj felé!\n");
 
@@ -48,7 +46,6 @@ namespace CsapoKristof_LegyenOnIsMilliomos
 
             Console.WriteLine("\nHelyes válasz! Kezdődik a játék!\n");
 
-            // Kategória bekérés
             Console.Write("Válassz egy kategóriát (pl. BIOLÓGIA, TÖRTÉNELEM, ZENE...): ");
             string kategoria = Console.ReadLine()?.ToUpper();
 
